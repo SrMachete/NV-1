@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Calendario de vacaciones y DP</title>
+<link rel="manifest" href="manifest.webmanifest"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header>
+<h1>Calendario de vacaciones y DP</h1>
+<div class="controls">
+<button id="prevMonth">◀</button>
+<span id="monthYear">Mes Año</span>
+<button id="nextMonth">▶</button>
+</div>
+<div class="toolbar">
+<button id="btnManage">➕ Agregar asociados</button>
+<span id="swStatus">Offline listo</span>
+</div>
+</header>
+<main class="grid">
+<section><div id="calendar" class="calendar"></div></section>
+<aside id="managePanel" class="panel hidden">
+<h2>Agregar asociados</h2>
+<form id="associateForm">
+<label>Login<input id="loginInput" required/></label>
+<label>Turno<select id="turnoSelect"></select></label>
+<fieldset><legend>Procesos</legend><div id="procesosChecks"></div></fieldset>
+<button type="submit">Guardar</button>
+</form>
+<ul id="assocList"></ul>
+</aside>
+</main>
+<div id="popup" class="popup hidden">
+<div class="popup-content">
+<h3 id="popupDate"></h3>
+<ul id="assignedList"></ul>
+<select id="selectAssociate"></select>
+<button id="addAssociateBtn">Agregar al día</button>
+<button id="closeBtn">Cerrar</button>
+</div>
+</div>
+<script src="main.js"></script>
+<script>
+if('serviceWorker' in navigator){
+navigator.serviceWorker.register('./service-worker.js').then(()=>{
+document.getElementById('swStatus').textContent='Listo offline';
+});
+}
+</script>
+</body>
+</html>
